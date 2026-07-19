@@ -1,0 +1,6 @@
+{
+  "appId": "com.pooja.virtualos",
+  "appName": "Virtual OS",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
