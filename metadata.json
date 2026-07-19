@@ -1,0 +1,12 @@
+{
+  "name": "Virtual OS Simulator",
+  "description": "An ultra-fast, professional-grade virtual computer simulator with a desktop environment, taskbar, and interactive windows.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

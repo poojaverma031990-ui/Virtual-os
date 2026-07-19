@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+.theme-icon-neon {
+  filter: drop-shadow(0 0 8px rgba(217, 70, 239, 0.8)) saturate(200%);
+}
+.theme-icon-glass {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
