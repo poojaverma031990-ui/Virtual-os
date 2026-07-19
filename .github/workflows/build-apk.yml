@@ -1,0 +1,47 @@
+name: Build Watermark-Free APK
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Install Project Dependencies
+        run: |
+          npm install
+          npm install @capacitor/core @capacitor/cli @capacitor/android
+
+      - name: Build Web Code
+        run: npm run build
+        env:
+          VITE_GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Wrap into Android App
+        run: |
+          npx cap init "Virtual OS" "com.pooja.virtualos" --web-dir=dist
+          npx cap add android
+          npx cap sync
+
+      - name: Build Raw Debug APK
+        run: |
+          cd android && ./gradlew assembleDebug
+
+      - name: Upload Clean APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Virtual-OS-Simulator-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          
