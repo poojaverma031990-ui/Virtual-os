@@ -37,7 +37,9 @@ jobs:
 
       - name: Build Raw Debug APK
         run: |
-          cd android && ./gradlew assembleDebug
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
 
       - name: Upload Clean APK
         uses: actions/upload-artifact@v4
